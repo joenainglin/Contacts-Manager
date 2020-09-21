@@ -1,22 +1,25 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
-import Contacts from "./components/Contacts";
-import Header from "./components/Header";
-import AddContact from "./components/AddContact";
+import Contacts from "./components/contact/Contacts";
+import Header from "./components/pages/Header";
+import AddContact from "./components/contact/AddContact";
 import About from "./components/pages/About";
 
 
 import NotFound from './components/pages/NotFound';
 import Test from './components/test/Test'
 
-import { Provider } from "./contextprovider/context";
+import { Provider } from 'react-redux';
+import store from './store'
+
+// import { Provider } from "./contextprovider/context";
 
 function App() {
   return (
-    <Provider>
+    <Provider store={store}>
       <Router>
         <div className="App">
           <Header title="Contacts Manager"></Header>

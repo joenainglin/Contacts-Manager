@@ -7,29 +7,29 @@ const TextInputForm = ({
     name,
     label,
     value,
-    type, 
+    type,
     placeholder,
     onChange,
     error
-} ) => {
+}) => {
     return (
         <div className="form-group">
-        <label htmlFor="exampleInputName1">{name}</label>
-        <input onChange={onChange}
-            type={type}
-            name={name}
-            label={label}
-            value={value}
-            placeholder={placeholder}
-            error={error}
-            className={classnames("form-control", {'is-invalid': error})}
-            id="exampleInputName1"
-            aria-describedby="emailHelp"/>
-    {error &&  <div className="invalid-feedback">{error}</div>}
-       
-    </div>
+            <label htmlFor="exampleInputName1">{name}</label>
+            <input onChange={onChange}
+                type={type}
+                name={name}
+                label={label}
+                value={value}
+                placeholder={placeholder}
+                error={error}
+                className={classnames("form-control", { 'is-invalid': error })}
+                id="exampleInputName1"
+                aria-describedby="emailHelp" />
+            {error && <div className="invalid-feedback">{error}</div>}
 
-   
+        </div>
+
+
     )
 }
 
@@ -41,6 +41,6 @@ TextInputForm.propTypes = {
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     eror: PropTypes.string,
-  };
+};
 
-export default  TextInputForm;
+export default TextInputForm;

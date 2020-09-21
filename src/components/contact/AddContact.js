@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 
-import { Consumer } from "../contextprovider/context";
+import { Consumer } from "../../contextprovider/context";
 
 import { v4 as uuid } from "uuid";
 
-import TextInputForm from "./TextInputForm";
+import TextInputForm from "../TextInputForm";
+
+
+import { connect } from 'react-redux';
+import PropTypes from "prop-types";
+import { addContact } from "../../actions/contactsActions";
+
 
 class AddContact extends Component {
   constructor() {
@@ -21,7 +27,7 @@ class AddContact extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onFormSubmit = (dispatch, e) => {
+  onFormSubmit = (e) => {
     e.preventDefault();
 
     // check for error 
@@ -46,7 +52,7 @@ class AddContact extends Component {
       password: this.state.password,
     };
 
-    dispatch({ type: "ADD_CONTACT", payload: newContact });
+    this.props.addContact(newContact);
 
     this.setState({
       name: "",
@@ -66,7 +72,7 @@ class AddContact extends Component {
             <div className="card mt-5">
               <div className="card-header">Add Contact</div>
               <div className="card-body">
-                <form onSubmit={this.onFormSubmit.bind(this, value.dispatch)}>
+                <form onSubmit={this.onFormSubmit}>
                   <TextInputForm
                     onChange={this.onFormFieldChange}
                     name="name"
@@ -110,4 +116,8 @@ class AddContact extends Component {
   }
 }
 
-export default AddContact;
+AddContact.propTypes = {
+  addContact: PropTypes.func.isRequired
+}
+
+export default connect(null, { addContact })(AddContact);
